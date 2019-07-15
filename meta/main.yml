@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Gustavo Muniz do Carmo
+  description: Role to unarchive different remote files in different target servers
+  company: codeyourinfra.today
+  license: MIT
+
+  min_ansible_version: 1.6
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+
+  galaxy_tags:
+    - unarchive
+    - untar
+    - unzip
+
+dependencies: []
