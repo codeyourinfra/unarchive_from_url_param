@@ -1,8 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-load '../common/timestamp-appender.rb'
-
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
 

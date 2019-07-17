@@ -7,7 +7,7 @@ teardown()
 	rm -rf .vagrant/ *.retry "$tmpfile" ubuntu-*-cloudimg-console.log
 }
 
-. ../common/test-library.sh
+. test-library.sh
 
 # turn on the environment
 vagrant up
