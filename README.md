@@ -33,8 +33,33 @@ First of all, turn on the VMs, executing the command `$ vagrant up`. Once the te
 
 ### Automated tests
 
-You can also test the solution automaticaly, by executing `./test.sh` or using [Molecule](https://molecule.readthedocs.io). With the latter, you can perform the test not only locally (the default), but in [AWS](https://aws.amazon.com) as well. During the Codeyourinfra's *continuous integration* process in Travis CI, the solution is tested on [Amazon EC2](https://aws.amazon.com/ec2).
+You can also test the solution automaticaly, by executing `./test.sh` or using [Molecule](https://molecule.readthedocs.io). If you prefer the latter, use [venv](https://docs.python.org/3/tutorial/venv.html) to setup the test environment:
 
-In order to get your environment ready for using *Molecule*, prepare your [Python virtual environment](https://docs.python.org/3/tutorial/venv.html), executing `python3 -m venv env && source env/bin/activate && pip install -r requirements.txt`. After that, just run the command `molecule test`, to test the solution locally in a [VirtualBox](https://www.virtualbox.org) VM managed by [Vagrant](https://www.vagrantup.com).
+`python3 -m venv env && source env/bin/activate && pip install -r requirements.txt`
 
-If you prefer performing the test in AWS, bear in mind you must have your credentials appropriately in **~/.aws/credentials**. You can [configure it through the AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html). The test is performed in the AWS region *Europe - London (eu-west-2)*. Just run `molecule test -s aws` and check the running instances through your [AWS Console](https://eu-west-2.console.aws.amazon.com/ec2/v2).
+After that, you can choose to perform the test through 3 different ways:
+
+#### 1. Using local VMs (the default)
+
+`molecule test`
+
+As well as the shell script [test.sh](test.sh), it requires:
+
+- [VirtualBox](https://www.virtualbox.org)
+- [Vagrant](https://www.vagrantup.com)
+
+#### 2. Using EC2 instances
+
+`molecule test -s aws`
+
+If your choice is performing the test in AWS, bear in mind you must have your credentials appropriately in **~/.aws/credentials**. You can [configure it through the AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+
+The test is performed in the AWS region *Europe - London (eu-west-2)*. Just run the test and check the running instances through your [AWS Console](https://eu-west-2.console.aws.amazon.com/ec2/v2).
+
+#### 3. Using Docker containers
+
+`molecule test -s docker`
+
+That's the way through [the role is tested in Travis CI](https://travis-ci.org/codeyourinfra/unarchive_from_url_param).
+
+It requires [Docker](https://www.docker.com).
